@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block main %}
+
+    <div class="py-1">
+        <h1>Not sure what to play next?</h1>
+        <h2>Why not try ...</h2>
+    </div>
+
+    {% set double = False %}
+
+    {% if not unplayed and replay %}
+        {% set game_lists = [replay] %}
+    {% elif unplayed and not replay %}
+        {% set game_lists = [unplayed] %}
+    {% elif not unplayed and not replay %}
+        {% set game_lists = [rand_game] %}
+    {% else %}
+        {% set double, game_lists = True, [unplayed, replay] %}
+    {% endif %}
+
+    {% if double == True %}
+    <div class="row align-items-md-stretch">
+    {% endif %}
+
+    {% for list in game_lists %}
+        <div class="col-md-6">
+            <div class="p-1 mb-4">
+            {% if list == unplayed %}
+            <h3>... a game you haven't played yet?</h3>
+            {% elif list == replay %}
+            <h3>... a game you haven't played recently?</h3>
+            {% else %}
+            <h3>... a random game from your library?</h3>
+            {% endif %}
+            <img src="{{ list.header_image }}" class="img-fluid p-2" alt="Game Header Image">
+                <h4>{{ list.name }}</h4>
+                <p>{{ list.short_description }}</p>
+                <p class="small">Released {{ list.release }}</p>
+                {% for genre in list.genre %}
+                    <button type="button" class="btn btn-secondary btn-sm" disabled>{{ genre.description }}</button>
+                {% endfor %}
+                <div class="p-2 mb-4">
+                    <a href="{{ list.play }}" class="btn btn-outline-dark btn-block">Play Now</a>
+                    <a href="{{list.store }}" class="btn btn-outline-dark btn-block">Steam Store</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    {% if double == True %}
+    </div>
+    {% endif %}
+
+    <form action="/" method="post">
+        <input name="steamurl" type="hidden" value="{{ url }}">
+        <button type="submit" id="submit" class="btn btn-outline-success">Another!</button>
+        <a class="btn btn-outline-danger" href="/" role="button">Go Back</a>
+    </form>
+
+{% endblock %}

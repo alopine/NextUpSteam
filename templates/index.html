@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+
+    <div class="py-2">
+        <h1>Not sure what to play next?</h1>
+        <h2>We'll help you decide.</h2>
+    </div>
+    <div class="py-2">
+        <form action="/" method="post">
+            <div class="input-group mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="steamurl" name="steamurl" placeholder="Input Steam Profile URL" type="text">
+                <button class="btn btn-outline-primary" type="submit" id="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div class="py-2">
+        <h2>Instructions</h2>
+        <p>Log into Steam, find your profile <a href="http://steamcommunity.com/my">here</a>, and copy and paste your complete profile URL into the field above.</p>
+        <p>NextUpSteam only works if your profile and game details are set to <strong>Public</strong>! You can change your profile visiblity settings <a href="https://steamcommunity.com/my/edit/settings">here</a>.</p>
+        <h3>Examples</h3>
+        <p>Your profile URL should look like one of the following, depending on whether you have a CommunityID vanity URL set in your profile:</p>
+        <p><strong>SteamID:</strong> <code>https://steamcommunity.com/profiles/76561197960434622</code></p>
+        <p><strong>CommunityID:</strong> <code>https://steamcommunity.com/id/afarnsworth</code></p>
+    </div>
+
+{% endblock %}
