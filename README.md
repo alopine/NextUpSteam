@@ -30,7 +30,7 @@ The application will return one game for each criterion successfully met. If you
 
 ### Video Demo
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/bCIJKBJjBQY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<a href="https://youtu.be/bCIJKBJjBQY/"><img src="docs/youtube.jpg" width="560"></a>
 
 ### Live Demo
 <a href="https://nextupsteam.herokuapp.com/"><img src="docs/main_page.jpg" width="560"></a>
