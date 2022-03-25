@@ -38,7 +38,7 @@ def pick_game(games):
 
         # Contact API
         try:
-            url = f"https://store.steampowered.com/api/appdetails?appids={appid}"
+            url = f"https://store.steampowered.com/api/appdetails?appids={appid}&l=english"
             response = requests.get(url)
         except requests.RequestException:
             return None
@@ -59,7 +59,7 @@ def pick_game(games):
                 }
         except (KeyError, TypeError, ValueError):
             return None
-            
+
 
 def resolve_vanity(fullurl):
     """Resolve Steam CommunityID vanity URL."""
