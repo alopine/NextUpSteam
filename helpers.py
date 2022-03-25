@@ -34,7 +34,7 @@ def pick_game(games):
 
         # Initialize
         appid = random.choice(games)["appid"]
-        resolve = []
+        gameinfo = []
 
         # Contact API
         try:
@@ -46,22 +46,20 @@ def pick_game(games):
         # Validate response
         try:
             if "data" in response.json()[f"{appid}"]:
-                resolve = response.json()[f"{appid}"]["data"]
-            if resolve["type"] == "game":
-                break
+                gameinfo = response.json()[f"{appid}"]["data"]
+            if gameinfo["type"] == "game":
+                return {
+                    "name": gameinfo["name"],
+                    "header_image": gameinfo["header_image"],
+                    "short_description": gameinfo["short_description"],
+                    "release": gameinfo["release_date"]["date"],
+                    "genre": gameinfo["genres"],
+                    "play": f"steam://run/{appid}",
+                    "store": f"https://store.steampowered.com/app/{appid}"
+                }
         except (KeyError, TypeError, ValueError):
             return None
-
-    return {
-        "name": resolve["name"],
-        "header_image": resolve["header_image"],
-        "short_description": resolve["short_description"],
-        "release": resolve["release_date"]["date"],
-        "genre": resolve["genres"],
-        "play": f"steam://run/{appid}",
-        "store": f"https://store.steampowered.com/app/{appid}"
-    }
-
+            
 
 def resolve_vanity(fullurl):
     """Resolve Steam CommunityID vanity URL."""
@@ -98,7 +96,7 @@ def validate_url(url):
 
 
 def validate_id(steamid):
-    """Validate SteamID, reu"""
+    """Validate SteamID, returning array of all owned games in library."""
 
     # Contact API
     try:
@@ -111,7 +109,7 @@ def validate_id(steamid):
 
     # Parse response
     try:
-        resolve = response.json()
-        return resolve["response"]["games"]
+        library = response.json()
+        return library["response"]["games"]
     except (KeyError, TypeError, ValueError):
         return None
