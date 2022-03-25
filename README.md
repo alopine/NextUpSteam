@@ -7,11 +7,11 @@ NextUpSteam is intended for use by users with accounts on [Steam](https://store.
 
 1. Log into Steam, either on the desktop application or in your browser.
 
-2. Go to [Edit Profile >> Privacy Settings](https://steamcommunity.com/my/edit/settings). Make sure that your Profile as well as your Game Details are set to Public view, as below.
+2. Go to [your Steam profile](https://steamcommunity.com/my) and copy the full URL in your address bar.
 
-![Privacy Settings](docs/view_settings.png)
+3. Go to [Edit Profile >> Privacy Settings](https://steamcommunity.com/my/edit/settings). Make sure that your Profile as well as your Game Details are set to Public view, as below.
 
-3. Go to [your Steam profile](http://steamcommunity.com/my) and copy the full URL in your address bar.
+![Privacy Settings](docs/view_settings.jpg)
 
 4. Paste the full URL into the text field on NextUpSteam's main page and hit submit.
 
@@ -28,9 +28,22 @@ The application will return one game for each criterion successfully met. If you
 
 ## Demo
 
-Video Demo TBA
+### Video Demo
 
-Live Demo (Heroku) TBA
+<iframe width="560" height="315" src="https://www.youtube.com/embed/bCIJKBJjBQY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+### Live Demo
+<a href="https://nextupsteam.herokuapp.com/"><img src="docs/main_page.jpg" width="560"></a>
+
+## Discussion
+
+NextUpSteam was born out of my desire to both tackle my extensive library of Steam games and to build upon what I learned about developing web applications in Week 9 of CS50x. My original idea was much more ambitious, involving additional options such as filters by genre, specific playtime, percentage of achievements attained, etc. It would also have utilized databases to store data on games retrieved from Steam's Store API so as to reduce the need to request data from the API every time the app was used.
+
+Ultimately, I decided to scale back the scope of the app and strike a balance between that original idea and a barebones app that simply returned a random game. I knew I had plenty of unplayed games in my own library alongside other games that I had only briefly played for a few minutes before never touching again, so I designed the app to return two games from a library, ensuring that users would have at least one option they might like regardless of whether they were in the mood to play something they'd never played before or something they wanted to revisit.
+
+One of the major lessons learned from the process of designing NextUpSteam was working with APIs, and working with Steam's Web and Store APIs required me to thoroughly study how the data that I requested was structured. From there, I wrote a few functions in `helpers.py` to sort, store, and pull the data. After I had a functional version of the app that I was happy with, I focused on tightening up and refactoring the entire design. I added logic that would handle cases in which a user's library might not have at least one game for each criterion (or even any game that met either criterion) and replaced repetitive sections of code with conditionals and loops that produced the same results in much fewer lines.
+
+Once I am more confident in my ability to work with larger databases and more complex designs, I would like to add the additional filters from my original idea, implement a database to reduce the number of requests made to Steam's APIs, and overhaul the UI to something sleeker and more distinctive.
 
 ## Acknowledgements
 
